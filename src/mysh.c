@@ -15,6 +15,10 @@ void my_sh(list_t env)
     (void) env;
     my_printf("$> ");
     while (getline(&buffer, &size, stdin)) {
+        if (my_strcmp(buffer, "exit")) {
+            my_printf("exit\n");
+            exit(0);
+        }
         my_printf("$> ");
     }
 }
