@@ -7,9 +7,13 @@
 
 #include "proto.h"
 
-static int command(int ac, char **av)
+static int command(int ac, char **av, list_t env)
 {
-    my_printf("Nb arg = %d\n", ac);
+    if (my_strcmp(av[0], "exit"))
+        my_exit(env);
+    if (my_strcmp(av[0], "env"))
+        my_env(env);
+    return 0;
 }
 
 void my_sh(list_t env)
@@ -18,16 +22,10 @@ void my_sh(list_t env)
     char* buffer = NULL;
     char **av = NULL;
 
-    (void) env;
     my_printf("$> ");
     while (getline(&buffer, &size, stdin)) {
-        // to remove in command
-        if (my_strcmp(buffer, "exit")) {
-            my_printf("exit\n");
-            exit(0);
-        }
         av = str_to_word_array(buffer);
-        command(count_array(av), av);
+        command(count_array(av), av, env);
         my_printf("$> ");
     }
 }
