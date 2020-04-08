@@ -10,9 +10,8 @@
 #ifndef LINKLIB_H_
 #define LINKLIB_H_
 
-link_l add_element_s(link_l list, int value);
-link_l add_element_e(link_l list, int value);
-void print_linkl(link_l list);
-int is_empty_l(link_l list);
+list_t add_element_s(list_t list, char* name, char* value);
+list_t add_element_e(list_t list, char* name, char* value);
+int is_empty_l(list_t list);
 
 #endif /* !LINKLIB_H_ */

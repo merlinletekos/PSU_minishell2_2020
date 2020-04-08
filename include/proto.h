@@ -10,7 +10,13 @@
 #include "linklib.h"
 #include "link_struct.h"
 
+#include <>
+
 #ifndef PSU_MINISHELL2_2019_PROTO_H
 #define PSU_MINISHELL2_2019_PROTO_H
+
+//env_manager.c
+list_t cp_env(char** env);
+void my_sh(list_t env);
 
 #endif //PSU_MINISHELL2_2019_PROTO_H

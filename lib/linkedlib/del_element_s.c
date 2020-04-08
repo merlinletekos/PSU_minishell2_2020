@@ -10,7 +10,7 @@
 #include "../../include/link_struct.h"
 #include "../../include/linklib.h"
 
-void del_element_s(link_l list)
+void del_element_s(list_t list)
 {
     element_t *buffer;
 
