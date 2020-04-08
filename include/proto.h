@@ -10,7 +10,8 @@
 #include "linklib.h"
 #include "link_struct.h"
 
-#include <>
+#include <stdlib.h>
+#include <stdio.h>
 
 #ifndef PSU_MINISHELL2_2019_PROTO_H
 #define PSU_MINISHELL2_2019_PROTO_H

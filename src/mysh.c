@@ -9,9 +9,10 @@
 
 void my_sh(list_t env)
 {
-    int size = 0;
+    size_t size = 0;
     char* buffer = NULL;
 
+    (void) env;
     my_printf("$> ");
     while (getline(&buffer, &size, stdin)) {
         my_printf("$> ");
