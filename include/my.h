@@ -31,5 +31,7 @@ void my_swap(int *a, int *b);
 int get_len(char const *str);
 char* prv_strparser(char *str, char delim);
 char* my_strparser(char const *str, char delim);
+char **str_to_word_array(char const *str);
+int count_array(char **array);
 
 #endif /* !MY_H_ */

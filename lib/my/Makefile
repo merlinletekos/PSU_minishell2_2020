@@ -26,7 +26,9 @@ SRC =	./my_compute_square_root.c	\
 		./my_strstr.c 				\
 		./my_swap.c 				\
 		./get_len.c					\
-		./my_strparser.c
+		./my_strparser.c			\
+		./my_str_to_word_array.c	\
+		./count_array_elem.c
 
 OBJ =	$(SRC:.c=.o)
 
