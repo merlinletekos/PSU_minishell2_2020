@@ -10,8 +10,8 @@
 int count_array(char **array)
 {
     int count = 0;
-    while (array[count] != NULL) {
+
+    while (array[count])
         count++;
-    }
     return count;
 }

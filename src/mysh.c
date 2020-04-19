@@ -7,13 +7,15 @@
 
 #include "proto.h"
 
-static int command(int ac, char **av, list_t env)
+static list_t command(int ac, char **av, list_t env)
 {
     if (my_strcmp(av[0], "exit"))
         my_exit(env);
     if (my_strcmp(av[0], "env"))
         my_env(env);
-    return 0;
+    if (my_strcmp(av[0], "setenv"))
+        env = my_setenv(ac, av, env);
+    return env;
 }
 
 void my_sh(list_t env)
@@ -23,9 +25,11 @@ void my_sh(list_t env)
     char **av = NULL;
 
     my_printf("$> ");
-    while (getline(&buffer, &size, stdin)) {
+    while (getline(&buffer, &size, stdin) != -1) {
         av = str_to_word_array(buffer);
-        command(count_array(av), av, env);
+        printf("%d\n", count_array(av));
+//        env = command(count_array(av), av, env);
         my_printf("$> ");
     }
+    my_exit(env);
 }

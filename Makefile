@@ -43,7 +43,8 @@ SRC =	./src/main.c			\
 		./src/env_manager.c		\
 		./src/mysh.c			\
 		./src/builtins/env.c	\
-		./src/builtins/exit.c
+		./src/builtins/exit.c	\
+		./src/builtins/setenv.c	\
 
 OBJ =	$(SRC:.c=.o)
 

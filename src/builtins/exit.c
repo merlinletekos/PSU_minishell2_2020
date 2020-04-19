@@ -9,6 +9,7 @@
 
 static void free_list(list_t list)
 {
+    (void) list;
     return;
 }
 

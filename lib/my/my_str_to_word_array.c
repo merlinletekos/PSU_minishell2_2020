@@ -6,41 +6,64 @@
 */
 
 #include <stdlib.h>
+#include <stdbool.h>
 #include "../../include/my.h"
 
-static int total_words(char const* str)
+static int count_word(char const* str)
 {
-    int word_count = 0;
+    int count = 0;
+    int open = 0;
 
-    for (int i = 0; str[i] != '\0'; i++) {
-        if (str[i] == ' ' || str[i] == '\n' || str[i] != '\0')
-            word_count++;
-    }
-    return word_count;
-}
-
-static int word_size(char const *str, int i)
-{
-    int word_s = 0;
-
-    for (; str[i] != ' ' && str[i] != '\n' && str[i] != '\0'; i++, word_s++);
-    return word_s;
-}
-
-char **str_to_word_array(char const *str)
-{
-    int word_c = 0;
-    char **words = malloc(sizeof(char*) * total_words(str));
-
-    for (int i = 0; str[i] != '\0'; i++, word_c++) {
-        words[word_c] = malloc(sizeof(char) * word_size(str, i) + 1);
-        words[word_c][word_size(str, i)] = '\0';
-        for (int j = 0; str[i] != ' ' && str[i] != '\n' &&
-        str[i] != '\0'; i++, j++) {
-            words[word_c][j] = str[i];
+    for (int i = 0; str[i] != '\n' && str[i] != '\0'; i++) {
+        if (str[i] == '"') {
+            open = open == 1 ? 0 : 1;
+            count += open;
         }
-        if (!str[i])
-            return words;
+        else if ((str[i] == ' ' || str[i] == '\n' || str[i] == '\0') && !open) {
+            count++;
+        }
     }
-    return words;
+    return count;
+}
+
+static int get_word_size(char const* str, int i)
+{
+    int wc = 0;
+
+    if (str[i] == '"')
+        for (i++; str[i] != '"' && str[i] != '\n' && str[i] != '\0'; i++, wc++);
+    else
+        for (i++; str[i] != ' ' && str[i] != '\n' && str[i] != '\0'; i++, wc++);
+    return (wc);
+}
+
+static int fill_word(const char* str, int i, char* word)
+{
+    if (str[i] == '"') {
+        i++;
+        for (int j = 0; str[i] != '"' && str[i] != '\n' &&
+        str[i] != '\0'; i++, j++)
+            word[j] = str[i];
+    }
+    else {
+        for (int j = 0; str[i] != ' ' && str[i] != '\n' &&
+                        str[i] != '\0'; i++, j++)
+            word[j] = str[i];
+    }
+    return i;
+}
+
+char** str_to_word_array(char const* str)
+{
+    int word = 0;
+    int word_count = count_word(str);
+    char** result = malloc(sizeof(char*) * word_count + 1);
+
+    result[word_count] = NULL;
+    for (int i = 0; str[i] != '\0'; i++, word++) {
+        result[word] = malloc(sizeof(char) * get_word_size(str, i) + 1);
+        result[word][get_word_size(str, i)] = '\0';
+        i = fill_word(str, i, result[word]);
+    }
+    return result;
 }
