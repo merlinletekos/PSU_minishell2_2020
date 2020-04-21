@@ -11,12 +11,8 @@ list_t my_setenv(int ac, char** av, list_t env)
 {
     element_t* buffer = env;
 
-    if (ac != 3) {
-        for (int i = 0; i < ac; i++) {
-            printf("- %s\n", av[i]);
-        }
+    if (ac != 3)
         return env;
-    }
     while (buffer != NULL) {
         if (my_strcmp(buffer->name, av[1])) {
             buffer->value = av[2];

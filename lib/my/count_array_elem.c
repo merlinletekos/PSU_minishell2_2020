@@ -9,9 +9,8 @@
 
 int count_array(char **array)
 {
-    int count = 0;
+    int i = 0;
 
-    while (array[count])
-        count++;
-    return count;
+    for (; array[i] != NULL; i++);
+    return i;
 }

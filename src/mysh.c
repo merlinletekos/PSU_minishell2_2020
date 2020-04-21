@@ -27,8 +27,7 @@ void my_sh(list_t env)
     my_printf("$> ");
     while (getline(&buffer, &size, stdin) != -1) {
         av = str_to_word_array(buffer);
-        printf("%d\n", count_array(av));
-//        env = command(count_array(av), av, env);
+        env = command(count_array(av), av, env);
         my_printf("$> ");
     }
     my_exit(env);

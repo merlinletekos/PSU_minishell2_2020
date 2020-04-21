@@ -5,6 +5,9 @@
 ** All my proto
 */
 
+#ifndef PSU_MINISHELL2_2019_PROTO_H
+#define PSU_MINISHELL2_2019_PROTO_H
+
 #include "my.h"
 #include "printlib.h"
 #include "linklib.h"
@@ -12,9 +15,6 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-
-#ifndef PSU_MINISHELL2_2019_PROTO_H
-#define PSU_MINISHELL2_2019_PROTO_H
 
 list_t cp_env(char** env);
 void my_sh(list_t env);
