@@ -7,30 +7,41 @@
 
 #include "proto.h"
 
+builtins_t builtins[] = {
+    {"exit", &my_exit},
+    {"env", &my_env},
+    {"setenv", &my_setenv},
+    {"unsetenv", &my_unsetenv}
+};
+
 static list_t command(int ac, char **av, list_t env)
 {
-    if (my_strcmp(av[0], "exit"))
-        my_exit(env);
-    if (my_strcmp(av[0], "env"))
-        my_env(env);
-    if (my_strcmp(av[0], "setenv"))
-        env = my_setenv(ac, av, env);
-    if (my_strcmp(av[0], "unsetenv"))
-        env = my_unsetenv(ac, av, env);
-    return env;
+    for (int i = 0; i < 4; i++) {
+        if (my_strcmp(av[0], builtins[i].name)) {
+            builtins[i].function(ac, av, env);
+            return env;
+        }
+    }
+    my_printf("%s: command not found.", av[0]);
+    exit(1);
 }
 
 void my_sh(list_t env)
 {
+    ssize_t rd = 0;
     size_t size = 0;
     char* buffer = NULL;
     char **av = NULL;
 
-    my_printf("$> ");
-    while (getline(&buffer, &size, stdin) != -1) {
+    while (1) {
+        rd = getline(&buffer, &size, stdin);
+        if (rd <= 0) {
+            exit(0);
+        }
+        if (my_strcmp(buffer, "\n")) {
+            continue;
+        }
         av = str_to_word_array(buffer);
         env = command(count_array(av), av, env);
-        my_printf("$> ");
     }
-    my_exit(env);
 }

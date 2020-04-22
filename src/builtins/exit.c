@@ -9,12 +9,21 @@
 
 static void free_list(list_t list)
 {
-    (void) list;
+    element_t* buffer = list;
+    element_t* next = list;
+
+    while (buffer != NULL) {
+        next = buffer->next;
+        free(buffer);
+        buffer = next;
+    }
     return;
 }
 
-int my_exit(list_t env)
+list_t my_exit(int ac, char** av, list_t env)
 {
+    (void) ac;
+    (void) av;
     free_list(env);
     my_printf("exit\n");
     exit(0);

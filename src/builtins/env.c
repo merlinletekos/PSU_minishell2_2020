@@ -7,13 +7,15 @@
 
 #include "proto.h"
 
-int my_env(list_t env)
+list_t my_env(int ac, char** av, list_t env)
 {
     element_t* buffer = env;
 
+    (void) ac;
+    (void) av;
     while (buffer != NULL) {
         my_printf("%s=%s\n", buffer->name, buffer->value);
         buffer = buffer->next;
     }
-    return 0;
+    return env;
 }

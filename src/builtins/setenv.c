@@ -11,6 +11,8 @@ list_t my_setenv(int ac, char** av, list_t env)
 {
     element_t* buffer = env;
 
+    if (ac == 1)
+        return my_env(ac, av, env);
     if (ac != 3)
         return env;
     while (buffer != NULL) {
