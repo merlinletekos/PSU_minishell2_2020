@@ -21,5 +21,6 @@ void my_sh(list_t env);
 int my_env(list_t env);
 int my_exit(list_t env);
 list_t my_setenv(int ac, char** av, list_t env);
+list_t my_unsetenv(int ac, char** av, list_t env);
 
 #endif //PSU_MINISHELL2_2019_PROTO_H

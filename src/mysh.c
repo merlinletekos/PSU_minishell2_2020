@@ -15,6 +15,8 @@ static list_t command(int ac, char **av, list_t env)
         my_env(env);
     if (my_strcmp(av[0], "setenv"))
         env = my_setenv(ac, av, env);
+    if (my_strcmp(av[0], "unsetenv"))
+        env = my_unsetenv(ac, av, env);
     return env;
 }
 

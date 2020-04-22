@@ -39,12 +39,13 @@ CFLAGS = -W -Wall -Wextra $(INCLUDE)
 
 RMFLAGS =	*.gcda *.gcno src/*.gcda src/*.gcno
 
-SRC =	./src/main.c			\
-		./src/env_manager.c		\
-		./src/mysh.c			\
-		./src/builtins/env.c	\
-		./src/builtins/exit.c	\
-		./src/builtins/setenv.c	\
+SRC =	./src/main.c				\
+		./src/env_manager.c			\
+		./src/mysh.c				\
+		./src/builtins/env.c		\
+		./src/builtins/exit.c		\
+		./src/builtins/setenv.c		\
+		./src/builtins/unsetenv.c
 
 OBJ =	$(SRC:.c=.o)
 
