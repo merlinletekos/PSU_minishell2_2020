@@ -25,6 +25,5 @@ list_t my_exit(int ac, char** av, list_t env)
     (void) ac;
     (void) av;
     free_list(env);
-    my_printf("exit\n");
     exit(0);
 }
