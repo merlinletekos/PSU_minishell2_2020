@@ -36,6 +36,10 @@ static int get_word_size(char const* str, int i)
 
 static int fill_word(const char* str, int i, char* word)
 {
+    if (str[i] == '\\' && str[i + 1] == '0') {
+        word[0] = '0';
+        return i + 2;
+    }
     if (str[i] == '"') {
         i++;
         for (int j = 0; str[i] != '"' && str[i] != '\n' &&

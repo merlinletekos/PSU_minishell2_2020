@@ -22,8 +22,8 @@ static list_t command(int ac, char **av, list_t env)
             return env;
         }
     }
-    my_printf("%s: Command not found.", av[0]);
-    exit(84);
+    my_printf("%s: Command not found.\n", av[0]);
+    return env;
 }
 
 void my_sh(list_t env)
@@ -34,13 +34,12 @@ void my_sh(list_t env)
     char **av = NULL;
 
     while (1) {
+        my_printf("$> ");
         rd = getline(&buffer, &size, stdin);
-        if (rd <= 0) {
+        if (rd == -1)
             exit(0);
-        }
-        if (my_strcmp(buffer, "\n")) {
+        if (my_strcmp(buffer, "\n"))
             continue;
-        }
         av = str_to_word_array(buffer);
         env = command(count_array(av), av, env);
     }

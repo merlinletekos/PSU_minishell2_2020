@@ -22,8 +22,13 @@ static void free_list(list_t list)
 
 list_t my_exit(int ac, char** av, list_t env)
 {
-    (void) ac;
-    (void) av;
+    int value = 0;
+
+    if (ac == 2 && my_str_isnum(av[1]))
+        value = my_getnbr(av[1]);
+    else if (ac != 1)
+        return env;
     free_list(env);
-    exit(0);
+    my_printf("exit\n");
+    exit(value);
 }

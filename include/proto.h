@@ -16,6 +16,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
 
 list_t cp_env(char** env);
 void my_sh(list_t env);

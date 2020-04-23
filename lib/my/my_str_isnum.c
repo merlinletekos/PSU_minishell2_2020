@@ -7,6 +7,9 @@
 
 int my_str_isnum(char const *str)
 {
-    (void) str;
-    return 0;
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] < '0' || str[i] > '9')
+            return 0;
+    }
+    return 1;
 }

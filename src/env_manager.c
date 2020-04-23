@@ -21,6 +21,8 @@ list_t cp_env(char** env)
         for (int i = 0; env[i] && env != NULL; i++) {
             name = prv_strparser(env[i], '=');
             value = my_strparser(env[i], '=');
+            if (my_strcmp(name, "OLDPWD"))
+                value = getcwd(NULL, 0);
             my_env = add_element_e(my_env, name, value);
         }
     }
