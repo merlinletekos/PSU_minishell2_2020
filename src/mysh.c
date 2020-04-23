@@ -22,7 +22,7 @@ static list_t command(int ac, char **av, list_t env)
             return env;
         }
     }
-    my_printf("%s: command not found.", av[0]);
+    my_printf("%s: Command not found.", av[0]);
     exit(84);
 }
 
