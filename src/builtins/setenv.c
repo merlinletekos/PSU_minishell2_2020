@@ -13,15 +13,15 @@ list_t my_setenv(int ac, char** av, list_t env)
 
     if (ac == 1)
         return my_env(ac, av, env);
-    if (ac != 3)
+    if (ac > 3)
         return env;
     while (buffer != NULL) {
         if (my_strcmp(buffer->name, av[1])) {
-            buffer->value = av[2];
+            buffer->value = ac == 2 ? NULL : av[2];
             return env;
         }
         buffer = buffer->next;
     }
-    env = add_element_e(env, av[1], av[2]);
+    env = add_element_e(env, av[1], ac == 2 ? NULL : av[2]);
     return env;
 }
