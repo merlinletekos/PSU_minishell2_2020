@@ -9,6 +9,18 @@
 
 char *BRT_PATH = "/bin:/sbin:/usr/bin:/usr/sbin";
 
+char* get_value(list_t env, char* name)
+{
+    element_t* buffer = env;
+
+    while(buffer != NULL) {
+        if (my_strcmp(name, buffer->name))
+            return buffer->value;
+        buffer = buffer->next;
+    }
+    return NULL;
+}
+
 list_t cp_env(char** env)
 {
     list_t my_env = NULL;

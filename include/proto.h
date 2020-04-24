@@ -18,11 +18,17 @@
 #include <stdio.h>
 #include <unistd.h>
 
-list_t cp_env(char** env);
 void my_sh(list_t env);
+
+// env manager
+list_t cp_env(char** env);
+char* get_value(list_t env, char* name);
+
+// Builtins
 list_t my_env(int ac, char** av, list_t env);
 list_t my_exit(int ac, char** av, list_t env);
 list_t my_setenv(int ac, char** av, list_t env);
 list_t my_unsetenv(int ac, char** av, list_t env);
+list_t my_cd(int ac, char** av, list_t env);
 
 #endif //PSU_MINISHELL2_2019_PROTO_H

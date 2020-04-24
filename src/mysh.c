@@ -11,12 +11,13 @@ builtins_t builtins[] = {
     {"exit", &my_exit},
     {"env", &my_env},
     {"setenv", &my_setenv},
-    {"unsetenv", &my_unsetenv}
+    {"unsetenv", &my_unsetenv},
+    {"cd", &my_cd}
 };
 
 static list_t command(int ac, char **av, list_t env)
 {
-    for (int i = 0; i < 4; i++) {
+    for (size_t i = 0; i < 5; i++) {
         if (my_strcmp(av[0], builtins[i].name)) {
             builtins[i].function(ac, av, env);
             return env;
@@ -24,6 +25,13 @@ static list_t command(int ac, char **av, list_t env)
     }
     my_printf("%s: Command not found.\n", av[0]);
     return env;
+}
+
+static void my_prompt()
+{
+    char* current_dir = getcwd(NULL, 0);
+
+    my_printf("%s:$ ", current_dir);
 }
 
 void my_sh(list_t env)
@@ -34,7 +42,7 @@ void my_sh(list_t env)
     char **av = NULL;
 
     while (1) {
-        my_printf("$> ");
+        my_prompt();
         rd = getline(&buffer, &size, stdin);
         if (rd == -1)
             exit(0);

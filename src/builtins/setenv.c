@@ -7,6 +7,22 @@
 
 #include "proto.h"
 
+list_t one_value(list_t env, char* av)
+{
+    element_t* buffer = env;
+    char* name = prv_strparser(av, '=');
+    char* value =  my_strparser(av, '=');
+
+    while (buffer != NULL) {
+        if (my_strcmp(name, buffer->name)) {
+            buffer->value = value;
+            return env;
+        }
+        buffer = buffer->next;
+    }
+    return add_element_e(env, name, value);
+}
+
 list_t my_setenv(int ac, char** av, list_t env)
 {
     element_t* buffer = env;
@@ -15,13 +31,15 @@ list_t my_setenv(int ac, char** av, list_t env)
         return my_env(ac, av, env);
     if (ac > 3)
         return env;
+    if (ac == 2)
+        return one_value(env, av[1]);
     while (buffer != NULL) {
         if (my_strcmp(buffer->name, av[1])) {
-            buffer->value = ac == 2 ? NULL : av[2];
+            buffer->value =  av[2];
             return env;
         }
         buffer = buffer->next;
     }
-    env = add_element_e(env, av[1], ac == 2 ? NULL : av[2]);
+    env = add_element_e(env, av[1], av[2]);
     return env;
 }

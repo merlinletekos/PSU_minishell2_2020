@@ -45,7 +45,8 @@ SRC =	./src/main.c				\
 		./src/builtins/env.c		\
 		./src/builtins/exit.c		\
 		./src/builtins/setenv.c		\
-		./src/builtins/unsetenv.c
+		./src/builtins/unsetenv.c	\
+		./src/builtins/my_cd.c
 
 OBJ =	$(SRC:.c=.o)
 
