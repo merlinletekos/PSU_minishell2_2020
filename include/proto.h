@@ -24,6 +24,10 @@ void my_sh(list_t env);
 list_t cp_env(char** env);
 char* get_value(list_t env, char* name);
 
+// command
+int is_command(char** av, char* path);
+char** path_to_word_array(char const* str);
+
 // Builtins
 list_t my_env(int ac, char** av, list_t env);
 list_t my_exit(int ac, char** av, list_t env);
