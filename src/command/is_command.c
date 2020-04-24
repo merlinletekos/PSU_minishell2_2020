@@ -14,7 +14,7 @@ int is_command(char** av, char* path)
 
     for (int i = 0; arr_path[i] != NULL; i++) {
         buff = my_strcat(my_strcat(arr_path[i], "/"), av[0]);
-        if (access(buff, F_OK)) {
+        if (access(buff, F_OK) != -1) {
             free(buff);
             return 1;
         }

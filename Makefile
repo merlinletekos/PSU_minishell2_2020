@@ -48,7 +48,9 @@ SRC =	./src/main.c						\
 		./src/builtins/unsetenv.c			\
 		./src/builtins/my_cd.c				\
 		./src/command/is_command.c			\
-		./src/command/path_to_str_array.c
+		./src/command/path_to_str_array.c	\
+		./src/command/my_exe.c				\
+		./src/command/env_converter.c
 
 OBJ =	$(SRC:.c=.o)
 
