@@ -7,12 +7,29 @@
 
 #include "proto.h"
 
+static size_t count_egal(char* av)
+{
+    size_t egal = 0;
+
+    for (int i = 0; av[i] != '\0'; i++)
+        if (av[i] == '=')
+            egal++;
+    return egal;
+}
+
 list_t one_value(list_t env, char* av)
 {
     element_t* buffer = env;
-    char* name = prv_strparser(av, '=');
-    char* value =  my_strparser(av, '=');
+    char* name;
+    char* value;
+    size_t egal = count_egal(av);
 
+    if (egal <= 1) {
+        name = egal == 1 ? prv_strparser(av, '=') : av;
+        value = egal == 1 ? my_strparser(av, '=') : NULL;
+    }
+    else
+        return env;
     while (buffer != NULL) {
         if (my_strcmp(name, buffer->name)) {
             buffer->value = value;
