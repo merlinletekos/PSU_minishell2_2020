@@ -58,11 +58,11 @@ char** str_to_word_array(char const* str)
 {
     int word = 0;
     int word_count = count_word(str);
-    char** result = malloc(sizeof(char*) * word_count + 1);
+    char** result = malloc(sizeof(char*) * word_count + 2);
 
     result[word_count] = NULL;
     for (int i = 0; str[i] != '\0' && str[i] != '\n'; i++, word++) {
-        result[word] = malloc(sizeof(char) * get_word_size(str, i) + 1);
+        result[word] = malloc(sizeof(char) * get_word_size(str, i) + 2);
         result[word][get_word_size(str, i)] = '\0';
         i = fill_word(str, i, result[word]);
     }

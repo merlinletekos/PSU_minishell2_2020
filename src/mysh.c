@@ -49,7 +49,7 @@ void my_sh(list_t env)
         my_prompt();
         rd = getline(&buffer, &size, stdin);
         if (rd == -1)
-            exit(0);
+            exit(1);
         if (my_strcmp(buffer, "\n"))
             continue;
         av = str_to_word_array(buffer);

@@ -35,7 +35,7 @@ char** convert_env(list_t env)
 {
     element_t* buffer = env;
     size_t count = count_list(env);
-    char** result = malloc(sizeof(char*) * count + 1);
+    char** result = malloc(sizeof(char*) * count + 2);
     size_t size = 0;
     size_t i = 0;
 
@@ -43,7 +43,7 @@ char** convert_env(list_t env)
     while (buffer != NULL) {
         size = my_strlen(buffer->name) + my_strlen(buffer->value) + 1;
         result[i] = malloc(sizeof(char) * size + 1);
-        result[size] = '\0';
+        result[i][size] = '\0';
         fill_word(buffer->name, buffer->value, result[i]);
         i++;
         buffer = buffer->next;
