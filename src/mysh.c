@@ -48,7 +48,7 @@ void my_sh(list_t env)
     while (1) {
         my_prompt();
         rd = getline(&buffer, &size, stdin);
-        if (rd == -1)
+        if (rd < 0)
             exit(1);
         if (my_strcmp(buffer, "\n"))
             continue;
