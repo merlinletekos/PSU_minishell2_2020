@@ -31,7 +31,7 @@ static list_t command(int ac, char **av, list_t env)
     return env;
 }
 
-static void my_prompt()
+static void my_prompt(void)
 {
     char* current_dir = getcwd(NULL, 0);
 
