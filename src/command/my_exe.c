@@ -15,6 +15,8 @@ static char* get_cmd_path(char* cmd, char* pathvar)
     char* buff = NULL;
 
     for (int i = 0; arr_path[i] != NULL; i++) {
+        if (my_strstr(cmd, arr_path[i]))
+            return cmd;
         buff = my_strcat(my_strcat(arr_path[i], "/"), cmd);
         if (access(buff, F_OK) != -1) {
             return buff;

@@ -8,6 +8,8 @@
 #ifndef MY_H_
 #define MY_H_
 
+#include <stdbool.h>
+
 int my_compute_square_root(int nb);
 int my_find_prime_sup(int nb);
 int my_is_prime(int nb);
@@ -26,7 +28,7 @@ char *my_strcpy(char *dest, char const *src);
 char *my_strncat(char *dest, char const *src, int n);
 int my_strncmp(char const *str1, char const *str2, int n);
 char *my_strncpy(char *dest, char const *src, int n);
-char *my_strstr(char *str, char const *to_find);
+bool my_strstr(char *str, char const *to_find);
 void my_swap(int *a, int *b);
 int get_len(char const *str);
 char* prv_strparser(char *str, char delim);

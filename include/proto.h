@@ -17,6 +17,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <stdbool.h>
 
 void my_sh(list_t env);
 
@@ -25,7 +26,7 @@ list_t cp_env(char** env);
 char* get_value(list_t env, char* name);
 
 // command
-int is_command(char** av, char* path);
+bool is_command(char** av, char* path);
 char** path_to_word_array(char const* str);
 char** convert_env(list_t env);
 int my_exe(char** av, char* pathvar, list_t env);
