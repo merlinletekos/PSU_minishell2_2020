@@ -109,5 +109,7 @@ re :	fclean all
 %.o :		%.c
 		@gcc -c -o $@ $^ $(CFLAGS) && $(ECHO) -n $(BOLD) $(GREEN)"  [OK] "$(WHITE) || $(ECHO) -n $(BOLD) $(RED)"  [KO] "$(WHITE) && $(ECHO) $(BOLD) $< | rev | cut -d'/' -f 1 | rev
 
+tests_run:	title
+
 debug: CFLAGS += -g
 debug: re
